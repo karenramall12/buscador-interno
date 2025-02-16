@@ -1,0 +1,153 @@
+:root {
+    --primary-color: #4b765e; /* Verde folha pastel */
+    --secondary-color: #eef7f0; /* Verde folha pastel bem suave */
+    --border-color: #ddd; /* Cor de borda neutra */
+    --link-color: #f4a1a1; /* Vermelho pastel para links */
+    --link-hover-color: #e57373; /* Vermelho pastel mais escuro para hover */
+    --button-color: #a8d5ba; /* Verde folha pastel para botões */
+    --button-hover-color: #5c8d66; /* Verde folha pastel mais escuro para hover */
+    --button-text-color: #fff; /* Texto branco para botões */
+    --button-hover-text-color: #eef7f0; /* Texto muda ao passar o mouse */
+    --highlight-color: #5c8d66; /* Verde folha para palavras em destaque */
+  }
+ 
+  /* Botão Hamburger fixo com fonte reduzida */
+  .hamburger {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 10000;
+    background: var(--button-color);
+    border: none;
+    color: var(--button-text-color);
+    font-size: 1.2em; /* Menor que 1.5em para ficar mais compacto */
+    cursor: pointer;
+    padding: 0.2em 0.5em;
+  }
+  
+  /* Menu Hamburger fixo; menor e responsivo */
+  .hamburger-menu {
+    position: fixed;
+    top: 50px; /* Ajuste conforme necessário */
+    left: 0;
+    width: 200px;  /* Largura reduzida */
+    background: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    padding: 8px; /* Padding menor */
+    z-index: 9999;
+    max-height: calc(100vh - 50px);
+    overflow-y: auto;
+    display: none; /* Oculto por padrão */
+  }
+  .hamburger-menu.open {
+    display: block;
+  }
+  
+  /* Lista do menu */
+  .hamburger-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Categoria do menu */
+  .menu-category {
+    cursor: pointer;
+    background: var(--primary-color);
+    color: var(--button-text-color);
+    padding: 6px; /* Menor padding */
+    border-bottom: 1px solid var(--border-color);
+    font-weight: bold;
+    margin-bottom: 4px;
+    font-size: 0.95em; /* Fonte um pouco menor */
+  }
+  .menu-category:hover {
+    background: var(--button-hover-color);
+  }
+  
+  /* Submenu oculto por padrão */
+  .submenu {
+    display: none;
+    padding-left: 12px; /* Reduzido */
+    margin-bottom: 8px;  /* Reduzido */
+  }
+  .submenu.open {
+    display: block;
+  }
+  
+  /* Links dos submenus */
+  .submenu li a {
+    display: block;
+    padding: 4px; /* Menor padding */
+    color: var(--link-color);
+    text-decoration: none;
+    font-size: 0.85em; /* Fonte menor */
+  }
+  .submenu li a:hover {
+    background: var(--link-hover-color);
+    color: var(--button-hover-text-color);
+  }
+  
+  /* Media Query para telas menores (opcional) */
+  @media (max-width: 480px) {
+    .hamburger-menu {
+      width: 180px;
+    }
+    .hamburger {
+      font-size: 1em;
+    }
+  }
+  #backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--button-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    z-index: 1000;
+    display: none; /* Oculto por padrão */
+  }
+  
+  #backToTop:hover {
+    opacity: 1;
+  }
+  #backToTop {
+    position: fixed; /* Fica fixo na tela */
+    bottom: 20px;    /* Distância da parte inferior */
+    right: 20px;     /* Distância da direita */
+    background: var(--button-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    z-index: 1000;
+    display: none; /* Inicialmente oculto */
+  }
+  
+  #backToTop:hover {
+    opacity: 1;
+  }
+  .copy-btn {
+    background-color: var(--button-color); /* Usa a sua variável de cor, ex: #a8d5ba */
+    color: var(--button-text-color); /* Texto branco, por exemplo */
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .copy-btn:hover {
+    background-color: var(--button-hover-color); /* Cor definida para hover, ex: #5c8d66 */
+  }
+  

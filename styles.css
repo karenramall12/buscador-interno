@@ -1,21 +1,33 @@
+:root {
+    --primary-color: #4b765e; /* Verde folha pastel */
+    --secondary-color: #eef7f0; /* Verde folha pastel bem suave */
+    --border-color: #ddd; /* Cor de borda neutra */
+    --link-color: #f4a1a1; /* Vermelho pastel para links */
+    --link-hover-color: #e57373; /* Vermelho pastel mais escuro para hover */
+    --button-color: #a8d5ba; /* Verde folha pastel para botões */
+    --button-hover-color: #5c8d66; /* Verde folha pastel mais escuro para hover */
+    --button-text-color: #fff; /* Texto branco para botões */
+    --button-hover-text-color: #eef7f0; /* Texto muda ao passar o mouse */
+    --highlight-color: #5c8d66; /* Verde folha para palavras em destaque */
+}
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
     padding: 20px;
     line-height: 1.6;
-    background-color: #f4f4f4;
+    background-color:#4b765e23 ;
 }
 
-h1 {
+
+h1, h2, h3 {
+    color: var(--primary-color);
     text-align: center;
-    color: red;
 }
 
 h2 {
     margin-top: 30px;
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid var(--border-color);
     padding-bottom: 5px;
-    color: red;
 }
 
 ul {
@@ -29,18 +41,36 @@ ul li {
 
 ul li a {
     text-decoration: none;
-    color: blue;
+    color: var(--link-color);
+    transition: color 0.3s ease;
+}
+
+ul li a:hover {
+    color: var(--link-hover-color);
 }
 
 input {
     padding: 10px;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     margin-right: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
 }
 
 button {
     padding: 10px 20px;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: var(--button-hover-color);
+    color: var(--button-hover-text-color);
 }
 
 #resultadoBusca {
@@ -50,16 +80,36 @@ button {
 }
 
 iframe {
-    width: 90%;
-    height: 500px;
+    width: 100%;
+    height: 400px;
     margin-top: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
 }
 
 .faq {
     margin-top: 20px;
 }
 
-.faq h3 {
-    color: red;
+.highlight {
+    color: var(--highlight-color);
+    font-weight: bold;
 }
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+    color: #777;
+}
+
+table {
+    border: 1px solid var(--border-color);
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 5px;
+    border: 1px solid var(--border-color);
+}
+
+
+    
