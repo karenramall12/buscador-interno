@@ -17,7 +17,7 @@ function buscarNoManual() {
     // Remove marcações anteriores
     doc.querySelectorAll(".highlight").forEach(span => {
       const textoOriginal = document.createTextNode(span.textContent);
-      span.parentNode.replaceChild(textoOriginal, span);
+      span.parentNode.replaceChild(textoOrigina, span);
     });
 
   
