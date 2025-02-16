@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+    color: red;
+}
+
+h2 {
+    margin-top: 30px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+    color: red;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 5px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: blue;
+}
+
+input {
+    padding: 10px;
+    width: 300px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#resultadoBusca {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+iframe {
+    width: 90%;
+    height: 500px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+}
+
+.faq {
+    margin-top: 20px;
+}
+
+.faq h3 {
+    color: red;
+}

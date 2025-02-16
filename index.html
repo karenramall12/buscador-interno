@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador Interno</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Buscador interno</h1>
+
+    <input type="text" id="searchInput" placeholder="Digite sua dúvida...">
+<button onclick="buscarNoManual()">Buscar</button>
+<div id="resultadoBusca"></div>
+
+    <!-- Iframe que carrega o manual -->
+    <iframe id="manualFrame" src="manual_organizado.html"></iframe>
+
+
+    <script src="chatgpt_busca.js"></script>
+</body>
+</html>
