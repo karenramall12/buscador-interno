@@ -16,13 +16,15 @@ function buscarNoManual() {
         return;
     }
 
-    // Remove marcações anteriores
+    // **🔴 REMOVE TODOS OS DESTAQUES ANTERIORES ANTES DE BUSCAR**
     doc.querySelectorAll(".highlight").forEach(span => {
         const textoOriginal = document.createTextNode(span.textContent);
         span.replaceWith(textoOriginal);
     });
 
-    resultados = []; // Reinicia a lista de resultados
+    // **🔵 ZERA OS RESULTADOS ANTES DE UMA NOVA BUSCA**
+    resultados = [];
+    indiceAtual = -1;
 
     // Define cores para alternar nos destaques
     const cores = ["yellow", "lightblue", "lightgreen", "orange", "pink"];
@@ -55,7 +57,7 @@ function buscarNoManual() {
 
     destacarTexto(doc.body);
 
-    // Se houver resultados, rola para o primeiro
+    // **Se houver resultados, rola para o primeiro**
     if (resultados.length > 0) {
         indiceAtual = 0;
         resultados[indiceAtual].scrollIntoView({ behavior: "smooth", block: "center" });
@@ -64,30 +66,47 @@ function buscarNoManual() {
     }
 }
 
-// Captura tecla Enter para navegar pelos resultados
+// **🔵 CAPTURA ENTER PARA BUSCAR E NAVEGAR PELOS RESULTADOS**
 document.getElementById("searchInput").addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
-        if (resultados.length > 0) {
-            indiceAtual = (indiceAtual + 1) % resultados.length; // Avança no ciclo de palavras encontradas
-            resultados[indiceAtual].scrollIntoView({ behavior: "smooth", block: "center" });
+
+        if (resultados.length === 0) {
+            buscarNoManual(); // **Realiza a busca apenas se não houver resultados**
         } else {
-            buscarNoManual(); // Faz a busca caso ainda não tenha sido feita
+            // **Avança para a próxima palavra destacada**
+            indiceAtual = (indiceAtual + 1) % resultados.length;
+            resultados[indiceAtual].scrollIntoView({ behavior: "smooth", block: "center" });
         }
     }
 });
+
+// **🔴 REMOVE DESTAQUES QUANDO CLICAR FORA DO INPUT**
+document.addEventListener("click", function (event) {
+    const inputBusca = document.getElementById("searchInput");
+    if (event.target !== inputBusca) {  // Apenas remove se NÃO estiver clicando no input
+        const iframe = document.getElementById("manualFrame");
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+
+        if (!doc) return; // Evita erro se o iframe não estiver carregado
+
+        doc.querySelectorAll(".highlight").forEach(span => {
+            const textoOriginal = document.createTextNode(span.textContent);
+            span.replaceWith(textoOriginal);
+        });
+
+        resultados = []; // Limpa a lista de palavras destacadas
+        indiceAtual = -1; // Reseta índice de navegação
+    }
+});
+
+// **EXIBE O BOTÃO "VOLTAR AO TOPO" SEMPRE VISÍVEL**
+document.getElementById("backToTop").style.display = 'block';
+
+// **ALINHA O BOTÃO MAIS PARA CIMA (OPCIONAL)**
+document.getElementById("backToTop").style.bottom = "50%";
 
 document.getElementById("manualFrame").onload = function() {
     const iframeDoc = document.getElementById("manualFrame").contentWindow.document;
     iframeDoc.body.style.background = "white";
 };
-
-// Exibe o botão "Voltar ao Topo" quando a página é rolada mais de 200px
-window.addEventListener('scroll', () => {
-    const backToTop = document.getElementById('backToTop');
-    if (window.pageYOffset > 200) {
-        backToTop.style.display = 'block';
-    } else {
-        backToTop.style.display = 'none';
-    }
-});
