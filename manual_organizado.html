@@ -7,14 +7,54 @@
   <title>Menu Hamburger Fixo</title>
   
   <link rel="stylesheet" href="styles.css">
+  
     
     
   
 </head>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll("section").forEach(section => {
+          // Criar botão de copiar automaticamente
+          const botao = document.createElement("button");
+          botao.innerText = "Copiar";
+          botao.className = "copiarBtn";
+          botao.style.marginLeft = "10px"; // Para afastar do texto
+  
+          // Adicionar botão ao título da seção
+          const titulo = section.querySelector("P");
+          if (titulo) {
+              titulo.appendChild(botao);
+          } else {
+              section.appendChild(botao); // Caso não tenha <h2>
+          }
+  
+          // Evento para copiar o texto ao clicar
+          botao.addEventListener("click", function () {
+              const texto = section.innerText.replace("Copiar", "").trim(); // Remove "Copiar" do texto
+              const textarea = document.createElement("textarea");
+              textarea.value = texto;
+              document.body.appendChild(textarea);
+              textarea.select();
+              document.execCommand("copy");
+              document.body.removeChild(textarea);
+  
+              this.innerText = "Copiado!";
+              setTimeout(() => { this.innerText = "Copiar"; }, 2000);
+          });
+      });
+  });
+  </script>
+  
 <body>
+  
+  
   <!-- Botão Hamburger fixo no topo -->
-  <button class="hamburger" id="hamburgerButton">☰ Menu</button>
-  <button id="backToTop" title="Voltar ao Topo">↑ Topo</button>
+<button class="hamburger" id="hamburgerButton">☰ Menu</button>
+
+<!-- Botão "Voltar ao Topo" fixo -->
+<button id="backToTop" title="Voltar ao Topo" onclick="scrollToTop()">↑ Topo</button>
+
 
   <!-- Menu Hamburger estruturado por categorias -->
   <nav class="hamburger-menu" id="hamburgerMenu">
@@ -102,26 +142,45 @@
   </nav>
 
   <script>
-    // Toggle do menu hamburger
-    document.getElementById("hamburgerButton").addEventListener("click", function() {
-      document.getElementById("hamburgerMenu").classList.toggle("open");
-    });
+  // ----- Menu Hamburger e Submenus -----
 
-    // Toggle para cada categoria (submenus)
-    document.querySelectorAll(".menu-category").forEach(function(category) {
-      category.addEventListener("click", function() {
-        var targetId = this.getAttribute("data-target");
-        document.getElementById(targetId).classList.toggle("open");
-        
-      });
-    });
-    document.addEventListener("click", function(e) {
-  var menu = document.getElementById("hamburgerMenu");
-  var button = document.getElementById("hamburgerButton");
+// Adiciona o listener para o botão do menu hamburger.
+// Ao clicar, interrompe a propagação do evento e alterna a classe "open"
+// para exibir ou esconder o menu.
+document.getElementById("hamburgerButton").addEventListener("click", function(e) {
+  e.stopPropagation(); // Impede que o clique se propague para o documento
+  document.getElementById("hamburgerMenu").classList.toggle("open");
+});
+
+// Adiciona o listener para cada categoria de menu (submenus).
+// Ao clicar em uma categoria, interrompe a propagação e alterna a classe "open"
+// no submenu correspondente (identificado pelo atributo data-target).
+document.querySelectorAll(".menu-category").forEach(function(category) {
+  category.addEventListener("click", function(e) {
+    e.stopPropagation(); // Evita que o clique feche o menu imediatamente
+    const targetId = this.getAttribute("data-target");
+    document.getElementById(targetId).classList.toggle("open");
+  });
+});
+
+// Listener global para fechar o menu e todos os submenus quando clicar fora.
+// Se o clique não ocorrer dentro do menu ou do botão hamburger, remove a classe "open"
+// do menu principal e de todos os submenus.
+document.addEventListener("click", function(e) {
+  const menu = document.getElementById("hamburgerMenu");
+  const button = document.getElementById("hamburgerButton");
   if (!menu.contains(e.target) && !button.contains(e.target)) {
     menu.classList.remove("open");
+    // Fecha todos os submenus
+    document.querySelectorAll(".submenu").forEach(function(submenu) {
+      submenu.classList.remove("open");
+    });
   }
 });
+
+    
+    
+
 // Seleciona o botão "Voltar ao Topo"
 const backToTop = document.getElementById('backToTop');
 
@@ -130,7 +189,7 @@ window.addEventListener('scroll', () => {
   if (window.pageYOffset > 200) {
     backToTop.style.display = 'block';
   } else {
-    backToTop.style.display = 'none';
+    backToTop.style.display = 'block';
   }
 });
 
@@ -151,14 +210,16 @@ backToTop.addEventListener('click', () => {
 
     <section id="agilizar_o_check_in">
       <h2>Agilizar o Check In</h2>
-      <p>Para agilizar o processo de check-in, informe por gentileza:</p>
-      <ul>
-        <li>Nome completo de todos os hóspedes;</li>
-        <li>CPF de todos os hóspedes;</li>
-        <li>Data de nascimento de todos os hóspedes;</li>
-        <li>E-mail (apenas do solicitante);</li>
-        <li>WhatsApp de todos os hóspedes;</li>
-        <li>Horário previsto para vossa chegada.</li>
+      <p>
+        <p>Para agilizar o processo de check-in, informe por gentileza:</p>
+        <ul>
+          <li>Nome completo de todos os hóspedes;</li>
+          <li>CPF de todos os hóspedes;</li>
+          <li>Data de nascimento de todos os hóspedes;</li>
+          <li>E-mail (apenas do solicitante);</li>
+          <li>WhatsApp de todos os hóspedes;</li>
+          <li>Horário previsto para vossa chegada.</li>
+      </p>
       </ul>
     </section>
     
