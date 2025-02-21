@@ -5,27 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscador Interno</title>
     <link rel="stylesheet" href="styles.css">
-   
-    
 </head>
 <body>
+
     <h1>Buscador interno</h1>
-    
 
-    <input type="text" id="searchInput" placeholder="Digite sua dúvida...">
-<button onclick="buscarNoManual()">Buscar</button>
-<div id="resultadoBusca">
-    
-</div>
+    <!-- Campo de busca -->
+    <label for="searchInput"></label>
+    <input type="text" id="searchInput" placeholder="Digite sua dúvida..." onkeydown="if(event.key === 'Enter') buscarNoManual()">
+    <button onclick="buscarNoManual()">Buscar</button>
 
+    <!-- Local onde os resultados aparecerão -->
+    <div id="resultadoBusca"></div>
 
     <!-- Iframe que carrega o manual -->
-    <div class="iframe-container"><iframe id="manualFrame" src="manual_organizado.html"></iframe></div>
+    <div class="iframe-container">
+        <iframe id="manualFrame" src="manual_organizado.html" width="100%" height="600px"></iframe>
+    </div>
 
-
+    <!-- Inclusão do script -->
     <script src="chatgpt_busca.js"></script>
-   
-    <footer>HostPad 2025</footer>
-</body>
 
+    <footer>HostPad 2025</footer>
+
+</body>
 </html>

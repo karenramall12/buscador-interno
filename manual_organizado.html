@@ -9,41 +9,47 @@
   <link rel="stylesheet" href="styles.css">
   
     
-    
+ 
+  
   
 </head>
+
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-      document.querySelectorAll("section").forEach(section => {
-          // Criar botão de copiar automaticamente
-          const botao = document.createElement("button");
-          botao.innerText = "Copiar";
-          botao.className = "copiarBtn";
-          botao.style.marginLeft = "10px"; // Para afastar do texto
-  
-          // Adicionar botão ao título da seção
-          const titulo = section.querySelector("P");
-          if (titulo) {
-              titulo.appendChild(botao);
-          } else {
-              section.appendChild(botao); // Caso não tenha <h2>
-          }
-  
-          // Evento para copiar o texto ao clicar
-          botao.addEventListener("click", function () {
-              const texto = section.innerText.replace("Copiar", "").trim(); // Remove "Copiar" do texto
-              const textarea = document.createElement("textarea");
-              textarea.value = texto;
-              document.body.appendChild(textarea);
-              textarea.select();
-              document.execCommand("copy");
-              document.body.removeChild(textarea);
-  
-              this.innerText = "Copiado!";
-              setTimeout(() => { this.innerText = "Copiar"; }, 2000);
-          });
-      });
-  });
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("section").forEach(section => {
+        // Criar botão de copiar automaticamente
+        const botao = document.createElement("button");
+        botao.innerText = "📋";
+        botao.className = "copiarBtn";
+        botao.style.marginLeft = "2px"; // Espaçamento
+        botao.style.padding = "2px";
+        botao.style.cursor = "pointer";
+
+        // Adicionar botão ao título da seção (se existir)
+        const titulo = section.querySelector("h2, h3, p");
+        if (titulo) {
+            titulo.appendChild(botao);
+        } else {
+            section.insertBefore(botao, section.firstChild); // Insere no topo se não houver título
+        }
+
+        // Evento para copiar o texto ao clicar
+        botao.addEventListener("click", async function () {
+            const texto = section.innerText.replace("📋", "").trim(); // Remove o ícone antes de copiar
+
+            try {
+                await navigator.clipboard.writeText(texto);
+                botao.innerText = "✅  Copiado!";
+                setTimeout(() => { botao.innerText = "📋"; }, 2000);
+            } catch (err) {
+                console.error("Erro ao copiar:", err);
+                botao.innerText = "❌ Erro!";
+                setTimeout(() => { botao.innerText = "📋"; }, 2000);
+            }
+        });
+    });
+});
+
   </script>
   
 <body>
@@ -1432,7 +1438,7 @@ backToTop.addEventListener('click', () => {
         <p>(Descrição detalhada do histórico de contato do hóspede é registrada em nosso sistema.)</p>
       </section>
 
-      
+       <script src="chatgpt_busca.js"></script>
     </body>
     </html>
     

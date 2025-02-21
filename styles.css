@@ -1,28 +1,27 @@
 :root {
-  --primary-color: #4b765e; /* Verde folha pastel */
-  --secondary-color: #eef7f0; /* Verde folha pastel bem suave */
+  --primary-color: #8B5E3C; /* Marrom sofisticado */
+  --secondary-color: #F5F1E3; /* Bege claro */
   --border-color: #ddd; /* Cor de borda neutra */
-  --link-color: #f4a1a1; /* Vermelho pastel para links */
-  --link-hover-color: #e57373; /* Vermelho pastel mais escuro para hover */
-  --button-color: #a8d5ba; /* Verde folha pastel para botões */
-  --button-hover-color: #5c8d66; /* Verde folha pastel mais escuro para hover */
+  --link-color: #D4AF37; /* Dourado para links */
+  --link-hover-color: #B8860B; /* Dourado mais escuro para hover */
+  --button-color: #A67C52; /* Marrom médio para botões */
+  --button-hover-color: #8B5E3C; /* Marrom mais escuro para hover */
   --button-text-color: #fff; /* Texto branco para botões */
-  --button-hover-text-color: #eef7f0; /* Texto muda ao passar o mouse */
-  --highlight-color: #5c8d66; /* Verde folha para palavras em destaque */
+  --button-hover-text-color: #F5F1E3; /* Bege claro no hover */
+  --highlight-color: red; /* TESTE: Destacar texto em vermelho */
 }
 
-
-
- html, body{
+html, body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 5px;
   line-height: 1.6;
-  background-color: rgba(249, 252, 250, 0.14)
+  background-color: var(--secondary-color);
+}
 
-  }
- 
-
+main {
+  background-color: white;
+}
 
 h1, h2, h3 {
   color: var(--primary-color);
@@ -40,24 +39,31 @@ h2 {
   padding-bottom: 5px;
 }
 
+/* Container de busca fixado */
 .search-container {
-   
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: var(--secondary-color);
-    padding: 10px;
-    z-index: 1000;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--secondary-color);
+  padding: 10px;
+  z-index: 9999;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
 
 .search-container input {
   display: inline-block;
   width: 80%;
   max-width: 300px;
+}
+
+/* Destaque para palavras encontradas */
+.highlight {
+  background-color: var(--highlight-color) !important;
+  color: white !important;
+  font-weight: bold;
+  padding: 2px;
+  border-radius: 3px;
 }
 
 ul {
@@ -99,6 +105,7 @@ button:hover {
   color: var(--button-hover-text-color);
 }
 
+/* Estilos do menu hambúrguer */
 .hamburger {
   position: fixed;
   top: 10px;
@@ -114,7 +121,7 @@ button:hover {
 
 .hamburger-menu {
   position: fixed;
-  top: 50px;
+  top: 40px;
   left: 0;
   width: 200px;
   background: var(--secondary-color);
@@ -139,6 +146,7 @@ button:hover {
   font-weight: bold;
   margin-bottom: 4px;
   font-size: 0.95em;
+  transition: background 0.3s ease;
 }
 
 .menu-category:hover {
@@ -161,33 +169,41 @@ button:hover {
   color: var(--link-color);
   text-decoration: none;
   font-size: 0.85em;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .submenu li a:hover {
-  background: var(--link-hover-color);
+  background: var(--button-hover-color);
   color: var(--button-hover-text-color);
+  font-weight: bold;
+  border-radius: 3px;
 }
 
+/* Botão de voltar ao topo */
 #backToTop {
   position: fixed;
-  bottom: 50%;
+  bottom: 150px;
   right: 20px;
-  background: var(--button-color);
-  color: var(--button-text-color);
+  background-color: var(--primary-color);
+  color: white;
   border: none;
-  padding: 10px 5px;
-  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
   cursor: pointer;
-  opacity: 0.7;
-  transition: opacity 0.3s;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   z-index: 1000;
   display: block;
+  transition: background 0.3s ease, color 0.3s ease, opacity 0.3s ease;
 }
 
 #backToTop:hover {
-  opacity: 1;
+  background-color: var(--button-hover-color);
+  color: var(--button-hover-text-color);
+  opacity: 0.8;
 }
 
+/* Container do iframe */
 .iframe-container {
   display: flex;
   justify-content: center;
@@ -201,30 +217,62 @@ button:hover {
 }
 
 .iframe-container iframe {
-  width: 95%;
-  height: 95%;
+  width: 100%;
+  height: 100%;
   border: 1px solid var(--border-color);
+  background-color: #ffffff;
 }
 
+/* Rodapé fixo */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 0px;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 @media (max-width: 480px) {
+  /* Ajusta a largura do campo de busca */
+  .search-container input {
+      max-width: 250px;
+  }
+  
+  /* Ajusta o menu hambúrguer para telas menores */
   .hamburger-menu {
       width: 180px;
       padding: 5px;
   }
+  
   .hamburger {
       font-size: 1em;
       padding: 0.2em 0.4em;
   }
+  
   .menu-category {
       padding: 5px;
       font-size: 0.9em;
   }
+  
   .submenu {
       padding-left: 10px;
       margin-bottom: 6px;
   }
+  
   .submenu li a {
       padding: 3px;
       font-size: 0.8em;
+  }
+  
+  /* Se precisar ajustar o botão "Voltar ao Topo" para telas menores */
+  #backToTop {
+      padding: 8px 12px;
+      font-size: 14px;
   }
 }
