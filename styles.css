@@ -1,14 +1,20 @@
-:root {
-  --primary-color:#00FF00;
-  --secondary-color:black;
-  --border-color: #333333;
-  --link-color: #D4AF37; 
-  --link-hover-color:#00FF00;
-  --button-color:#00FF00;
-  --button-hover-color:#00ff0068;
-  --button-text-color:black;
-  --button-hover-text-color:#00ffff;
-  --highlight-color:#00FF00;                           
+@media (max-width: 768px) {
+  :root {
+    --primary-color:#00FF00 !important;
+    --secondary-color:black !important;
+    --border-color: #333333 !important;
+    --link-color: #D4AF37 !important;
+    --link-hover-color:#00FF00 !important;
+    --button-color:#00FF00 !important;
+    --button-hover-color:#00ff0068 !important;
+    --button-text-color:black !important;
+    --button-hover-text-color:#00ffff !important;
+    --highlight-color:#00FF00 !important; 
+  }
+}
+
+button, input {
+  appearance: none;
 }
 
 html, body {
