@@ -1,14 +1,14 @@
 :root {
-  --primary-color: #8B5E3C; /* Marrom sofisticado */
-  --secondary-color: #F5F1E3; /* Bege claro */
-  --border-color: #ddd; /* Cor de borda neutra */
-  --link-color: #D4AF37; /* Dourado para links */
-  --link-hover-color: #B8860B; /* Dourado mais escuro para hover */
-  --button-color: #A67C52; /* Marrom médio para botões */
-  --button-hover-color: #8B5E3C; /* Marrom mais escuro para hover */
-  --button-text-color: #fff; /* Texto branco para botões */
-  --button-hover-text-color: #F5F1E3; /* Bege claro no hover */
-  --highlight-color: red; /* TESTE: Destacar texto em vermelho */
+  --primary-color:#00FF00;
+  --secondary-color:black;
+  --border-color: #333333;
+  --link-color: #D4AF37; 
+  --link-hover-color:#00FF00;
+  --button-color:#00FF00;
+  --button-hover-color:#00ff0068;
+  --button-text-color:black;
+  --button-hover-text-color:#00ffff;
+  --highlight-color:#00FF00;                           
 }
 
 html, body {
@@ -16,11 +16,12 @@ html, body {
   margin: 0;
   padding: 5px;
   line-height: 1.6;
-  background-color: var(--secondary-color);
+
 }
 
 main {
-  background-color: white;
+  background-color:#333333;
+  color: white;
 }
 
 h1, h2, h3 {
@@ -120,6 +121,7 @@ button:hover {
 }
 
 .hamburger-menu {
+  color: white;
   position: fixed;
   top: 40px;
   left: 0;
@@ -230,7 +232,7 @@ footer {
   left: 0;
   width: 100vw;
   background-color: var(--primary-color);
-  color: white;
+  color:black;
   text-align: center;
   padding: 0px;
   gap: 10px;

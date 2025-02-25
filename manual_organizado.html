@@ -7,6 +7,23 @@
   <title>Menu Hamburger Fixo</title>
   
   <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+background-color:#333333
+    }
+    /* Ajuste do título para ter uma sombra e os códigos passarem atrás */
+h1 {
+  position: relative; /* Mantém o título sobre o efeito Matrix */
+  z-index: 2; /* Garante que fique sobre os códigos */
+  color: #00FFFF; /* Ciano Neon */
+  text-align: center;
+  font-size: 3rem; /* Tamanho do título */
+  text-shadow: 4px 4px 10px rgba(0, 255, 255, 0.8); /* Sombra brilhante neon */
+  padding: 20px;
+  margin-top: 20px;
+}
+
+  </style>
   
     
  
@@ -187,22 +204,6 @@ document.addEventListener("click", function(e) {
     
     
 
-// Seleciona o botão "Voltar ao Topo"
-const backToTop = document.getElementById('backToTop');
-
-// Exibe o botão quando a página é rolada mais de 200px
-window.addEventListener('scroll', () => {
-  if (window.pageYOffset > 200) {
-    backToTop.style.display = 'block';
-  } else {
-    backToTop.style.display = 'block';
-  }
-});
-
-// Ao clicar, rola suavemente para o topo da página
-backToTop.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
   </script>
 
 

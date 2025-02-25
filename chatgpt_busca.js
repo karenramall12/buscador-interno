@@ -122,11 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Define fundo branco no iframe quando ele carregar
-document.getElementById("manualFrame").addEventListener("load", function () {
-    const iframeDoc = this.contentWindow.document;
-    iframeDoc.body.style.background = "white";
-});
+
 
 // Botão "Voltar ao Topo"
 document.addEventListener("DOMContentLoaded", function () {
