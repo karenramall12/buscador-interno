@@ -276,3 +276,7 @@ footer {
       font-size: 14px;
   }
 }
+@media (max-width: 768px) { /* Para telas pequenas (celulares) */
+  #backToTop {
+      display: block;
+  }}
