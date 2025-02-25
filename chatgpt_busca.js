@@ -83,23 +83,10 @@ function buscarNoManual() {
 
 // Aguarda o carregamento do DOM e adiciona os event listeners
 document.addEventListener("DOMContentLoaded", function () {
-    // Evento para o input (Enter)
-    document.getElementById("searchInput").addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            if (resultados.length === 0) {
-                buscarNoManual(); // Realiza a busca se não houver resultados
-            } else {
-                // Avança para a próxima palavra destacada
-                indiceAtual = (indiceAtual + 1) % resultados.length;
-                resultados[indiceAtual].scrollIntoView({ behavior: "smooth", block: "center" });
-            }
-        }
-    });
+    const searchInput = document.getElementById("searchInput");
+    const btnBuscar = document.getElementById("btnBuscar");
     
-    // Evento para o botão de buscar
-    document.getElementById("btnBuscar").addEventListener("click", function (event) {
-        event.preventDefault();
+    function avancarResultado() {
         if (resultados.length === 0) {
             buscarNoManual(); // Realiza a busca se não houver resultados
         } else {
@@ -107,6 +94,31 @@ document.addEventListener("DOMContentLoaded", function () {
             indiceAtual = (indiceAtual + 1) % resultados.length;
             resultados[indiceAtual].scrollIntoView({ behavior: "smooth", block: "center" });
         }
+    }
+    
+    // Evento para o input (Enter e input para mobile)
+    searchInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            avancarResultado();
+        }
+    });
+    
+    searchInput.addEventListener("input", function () {
+        if (searchInput.value.trim() === "") {
+            buscarNoManual();
+        }
+    });
+    
+    // Evento para o botão de buscar (click e touchend para mobile)
+    btnBuscar.addEventListener("click", function (event) {
+        event.preventDefault();
+        avancarResultado();
+    });
+    
+    btnBuscar.addEventListener("touchend", function (event) {
+        event.preventDefault();
+        avancarResultado();
     });
 });
 
