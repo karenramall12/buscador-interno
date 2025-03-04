@@ -180,13 +180,13 @@ body {
   }
   
   .hamburger-menu {
-    position: absolute;
-    top: 50px;
-    left: 15px;
+    position: fixed;
+    top: 60px;
+    left: 20px;
     width: 280px;
     max-height: 70vh;
     background: rgba(0, 20, 0, 0.98);
-    z-index: 999;
+    z-index: 9999;
     border: 2px solid #00FF00;
     border-radius: 5px;
     overflow-y: auto;
