@@ -3,106 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buscador Interno</title>
+  <title>HostPad</title>
   <link rel="stylesheet" href="styles.css">
-  
+  <style>
+   
+    /* Estilos para o cabeçalho */
+    #app header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 20px 0;
+        border-bottom: 2px solid #00FF00;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        margin: 0;
+        color: #00FF00;
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    }
+
+    #app p {
+        margin: 10px 0 0 0;
+        font-size: 1.2em;
+        color: #00AA00;
+    }
+
+    /* Estilos essenciais para o Matrix */
+    #matrixCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    #app {
+      position: relative;
+      z-index: 1;
+      background: rgba(0, 0, 0, 0.85);
+    }
+  </style>
 </head>
 
-<style>
-    body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Courier New', monospace;
-  color: var(--link-color); /* Texto principal em Verde Elétrico */
-  background: linear-gradient(270deg, #000000, #333333, #000000); /* Degradê escuro */
-  background-size: 400% 400%;
-  animation: backgroundMove 10s infinite alternate ease-in-out;
-  overflow-y: auto;
-}
-
-
-/* Animação do degradê de fundo */
-@keyframes backgroundMove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-
-/* Criando o Canvas para efeito Matrix */
-#matrixCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* Fica atrás do conteúdo */
-  pointer-events: none; /* Não interfere com cliques */
-}
-</style>
 <body>
-  <h1>Buscador interno</h1>
-  <!-- Campo de busca -->
-
-
-  <label for="searchInput"></label>
-  <input type="text" id="searchInput" placeholder="Digite sua dúvida...">
-  
-  <button id="btnBuscar">Buscar</button>
-  <!-- Local onde os resultados aparecerão -->
-  <div id="resultadoBusca"></div>
-  <!-- Iframe que carrega o manual -->
-  <div class="iframe-container">
-
-    <iframe id="manualFrame" src="manual_organizado.html" width="100%" height="30px"></iframe>
-  </div>
-  <!-- Inclusão do script -->
-  <script src="chatgpt_busca.js"></script>
-  
   <canvas id="matrixCanvas"></canvas>
+  
+  <div id="app">
+    <h1>HostPad</h1>
+    <p>Buscador interno</p>
+    
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Digite sua dúvida...">
+      <button id="btnBuscar">Buscar</button>
+    </div>
+
+    <div class="iframe-container">
+      <iframe id="manualFrame" src="manual_organizado.html"></iframe>
+    </div>
+  </div>
+
+  <footer>HostPad 2025</footer>
+
+  <script src="chatgpt_busca.js"></script>
   <script>
+    // Matrix Effect Script melhorado
     const canvas = document.getElementById('matrixCanvas');
-const ctx = canvas.getContext('2d');
-
-// Ajustando o canvas para ocupar toda a tela
-function ajustarCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-ajustarCanvas(); // Ajusta quando a página carrega
-
-const letters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const fontSize = 16;
-const columns = Math.floor(canvas.width / fontSize);
-const drops = Array(columns).fill(1);
-
-function drawMatrix() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.1)"; // Fundo escurecendo gradualmente
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = "#00FF00"; // Cor dos códigos (Verde Elétrico)
-    ctx.font = `${fontSize}px monospace`;
-
-    for (let i = 0; i < drops.length; i++) {
-        const text = letters[Math.floor(Math.random() * letters.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-        }
-
-        drops[i]++;
+    const ctx = canvas.getContext('2d');
+    
+    // Configurações ajustadas
+    const chars = "HostPad9@#$%^&*()";
+    const fontSize = 15;
+    let drops = [];
+    
+    function initMatrix() {
+        // Preenche toda a tela
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        // Calcula colunas corretamente
+        const columns = Math.floor(canvas.width / fontSize);
+        drops = Array(columns).fill(0);
     }
-}
 
-setInterval(drawMatrix, 50);
+    function drawMatrix() {
+        // Fundo com efeito de rastro
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Gradiente de cores
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        gradient.addColorStop(0, '#0F0');
+        gradient.addColorStop(1, '#0A0');
+        ctx.fillStyle = gradient;
+        ctx.font = `${fontSize}px monospace`;
 
-// Ajuste quando a tela for redimensionada
-window.addEventListener('resize', () => {
-    ajustarCanvas();
-    drops.length = Math.floor(canvas.width / fontSize);
-    drops.fill(1);
-});
+        // Desenha caracteres
+        for (let i = 0; i < drops.length; i++) {
+            const char = chars[Math.floor(Math.random() * chars.length)];
+            const x = i * fontSize;
+            const y = drops[i] * fontSize;
+            
+            ctx.fillText(char, x, y);
+            
+            // Reinicia no topo aleatoriamente
+            if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
+            
+            // Velocidade variável
+            drops[i] += Math.random() * 0.5 + 0.3;
+        }
+    }
 
+    // Inicialização
+    initMatrix();
+    
+    // Controle de animação
+    let animationFrame;
+    function animate() {
+        drawMatrix();
+        animationFrame = requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Redimensionamento responsivo
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            cancelAnimationFrame(animationFrame);
+            initMatrix();
+            animate();
+        }, 100);
+    });
   </script>
-<footer>HostPad 2025</footer>
 </body>
 </html>

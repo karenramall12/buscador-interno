@@ -109,3 +109,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+document.getElementById("hamburgerButton").addEventListener("click", function(e) {
+    e.stopPropagation();
+    const menu = document.getElementById("hamburgerMenu");
+    menu.classList.toggle("open");
+    
+    // Fecha todos os submenus ao abrir/fechar o menu principal
+    if (!menu.classList.contains("open")) {
+      document.querySelectorAll(".submenu").forEach(sub => {
+        sub.classList.remove("open");
+      });
+    }
+  });
+  
+  // Mantenha o restante do código de fechar ao clicar fora

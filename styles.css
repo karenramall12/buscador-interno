@@ -1,294 +1,134 @@
-/* Definição de variáveis para cores em telas menores */
+/* Estilos Gerais */
 
-  :root {
-    --primary-color: #00FF00;
-    --secondary-color: black;
-    --border-color: #333333;
-    --link-color:  #00ffff;
-    --link-hover-color: #00FF00;
-    --button-color: #00FF00;
-    --button-hover-color: #00ff0068;
-    --button-text-color: black;
-    --button-hover-text-color: #00ffff;
-    --highlight-color: #00FF00;
-  
-}
-
-*{
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-}
-
-/* Reset básico */
-button, input {
-  appearance: none;
-  
-}
-/* Melhorar acessibilidade */
-input:focus {
-  outline: 2px solid var(--primary-color);
-  box-shadow: 0 0 8px var(--highlight-color);
-}
-html, body {
- 
+body {
   margin: 0;
-  padding: 5px;
-  line-height: 1.6;
-  height: 100vh;
-  width: 100vw;
-
-  
+  padding: 0;
+  font-family: 'Courier New', monospace;
+  color: #00FF00;
+  background-color: #000;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
-
-main {
-  background-color:rgba(0, 0, 0, 0.552);
-  color: white;
-  box-shadow:  4px 4px 10px rgba(0, 255, 255, 0.8);;
-  text-align: justify;
-      }
-
-     
-      /* Ajuste do título para ter uma sombra e os códigos passarem atrás */
-  h1 {
-    position: relative; /* Mantém o título sobre o efeito Matrix */
-    z-index: 2; /* Garante que fique sobre os códigos */
-    color: #00FFFF; /* Ciano Neon */
-    text-align: center;
-    font-size: 3rem; /* Tamanho do título */
-    text-shadow: 4px 4px 10px rgba(0, 255, 255, 0.8); /* Sombra brilhante neon */
-    padding: 20px;
-    margin-top: 20px;
-    flex: 0 0 200px;
-    flex-flow: column nowrap;
-  }
-
-h1, h2, h3 {
-  color: var(--primary-color);
-  text-align: center;
-}
-
-h1 {
-  font-size: 2em;
-  margin: 10px auto;
-}
-
-h2 {
-  margin-top: 30px;
-  border-bottom: 2px solid var(--border-color);
-  padding-bottom: 5px;
-}
-
-/* Container de busca fixado */
-.search-container {
-  position:center; ;
+/* Efeito Matrix */
+#matrixCanvas {
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  background: var(--secondary-color);
-  padding: 10px;
-  z-index: 9999;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  pointer-events: none;
 }
 
-.search-container input {
-  display: inline-block;
-  width: 80%;
-  max-width: 300px;
+/* Container Principal */
+#app {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
 }
 
-/* Destaque para palavras encontradas */
-.highlight {
-  background-color: var(--link-color);
-  color: black;
-  font-weight: bold;
-  padding: 2px;
-  border-radius: 3px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-ul li a {
-  text-decoration: none;
-  color: var(--link-color);
-  transition: color 0.3s ease;
-}
-
-ul li a:hover {
-  color: var(--link-hover-color);
-}
-
-/* Botões e inputs */
-input {
-  padding: 10px;
-  width: 100%;
-  max-width: 300px;
-  margin-right: 10px;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: var(--button-color);
-  color: var(--button-text-color);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-}
-
-button:hover {
-  background-color: var(--button-hover-color);
-  color: var(--button-hover-text-color);
-}
-
-/* Estilos do menu hambúrguer */
-.hamburger {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 10000;
-  background: var(--button-color);
-  border: none;
-  
-}
-
-.hamburger-menu {
-  color: white;
-  position: fixed;
-  top: 40px;
-  left: 0;
-  width: 200px;
-  background: var(--secondary-color);
-  border: 1px solid var(--border-color);
-  padding: 8px;
-  z-index: 9999;
-  max-height: calc(100vh - 50px);
-  overflow-y: auto;
-  display: none;
-}
-
-.hamburger-menu.open {
-  display: block;
-}
-
-.menu-category {
-  cursor: pointer;
-  background: var(--primary-color);
-  color: var(--button-text-color);
-  padding: 6px;
-  border-bottom: 1px solid var(--border-color);
-  font-weight: bold;
-  margin-bottom: 4px;
-  font-size: 0.95em;
-  transition: background 0.3s ease;
-}
-
-.menu-category:hover {
-  background: var(--button-hover-color);
-}
-
-.submenu {
-  display: none;
-  padding-left: 12px;
-  margin-bottom: 8px;
-}
-
-.submenu.open {
-  display: block;
-}
-
-.submenu li a {
-  display: block;
-  padding: 4px;
-  color: var(--link-color);
-  text-decoration: none;
-  font-size: 0.85em;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.submenu li a:hover {
-  background: var(--button-hover-color);
-  color: var(--button-hover-text-color);
-  font-weight: bold;
-  border-radius: 3px;
-}
-
-/* Botão de voltar ao topo */
-#backToTop {
-  position: fixed;
-  bottom: 50px;
-  right: 20px;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  display: block;
-  transition: background 0.3s ease, color 0.3s ease, opacity 0.3s ease;
-}
-
-#backToTop:hover {
-  background-color: var(--button-hover-color);
-  color: var(--button-hover-text-color);
-  opacity: 0.8;
-}
-
-/* Container do iframe */
-.iframe-container {
+/* Campo de Busca */
+.search-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh; /* Ocupa toda a altura da tela */
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+#searchInput {
+  flex: 1;
+  padding: 12px;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #00FF00;
+  border: 2px solid #00FF00;
+  border-radius: 5px;
+  font-family: monospace;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+  outline: none;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+#btnBuscar {
+  padding: 12px 24px;
+  background-color: #00AA00;
+  color: #000;
+  font-weight: bold;
+  border: 2px solid #00FF00;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#btnBuscar:hover {
+  background-color: #008800;
+  transform: translateY(-1px);
+}
+
+/* Container do Iframe */
+.iframe-container {
+  height: 60vh;
+  border: 2px solid #00FF00;
+  border-radius: 10px;
   overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 80px;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
 }
 
-.iframe-container iframe {
+#manualFrame {
   width: 100%;
-  max-width: 1123px; /* Largura da folha A3 */
-  height: 1587px; /* Altura da folha A3 */
-  border: 1px solid var(--border-color);
+  height: 100%;
+  border: none;
 }
 
-/* Ajustes para telas menores */
-@media (max-width: 768px) {
-  .iframe-container {
-    height: auto;
-  }
-
-  .iframe-container iframe {
-    width: 100%;
-    height: 90vh; /* Ocupa quase toda a tela no celular */
-  }
-
-  
-}
-
-@media (max-width: 480px) {
-  .search-container input {
-    max-width: 250px;
-  }
-}
+/* Rodapé */
 footer {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  text-align: center;
-  padding: 2px;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: 9999;
-  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.95);
+  color: #00FF00;
+  border-top: 2px solid #00FF00;
+  z-index: 2;
+  backdrop-filter: blur(3px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  #app {
+    padding: 15px;
+    margin: 15px;
+  }
+  
+  .search-container {
+    flex-direction: column;
+  }
+  
+  #btnBuscar {
+    width: 100%;
+  }
+  
+  .iframe-container {
+    height: 50vh;
+    margin-bottom: 100px;
+  }
+}
+
+/* Melhoria na animação do Matrix */
+@media (prefers-reduced-motion: reduce) {
+  #matrixCanvas {
+    animation: none;
+  }
 }

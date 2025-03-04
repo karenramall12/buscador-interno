@@ -1,0 +1,269 @@
+/* Estilos Gerais */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', monospace;
+    background-color: #000;
+    color: #00ff00;
+    line-height: 1.6;
+  }
+  
+  /* Efeito Matrix de Fundo */
+  #matrixCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  /* Cores Principais */
+  :root {
+    --primary-color: #00ff00;
+    --secondary-color: #006600;
+    --background-color: #000000;
+    --hover-color: #33ff33;
+  }
+  
+  /* Menu Hamburger */
+  .hamburger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: var(--background-color);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s;
+  }
+  
+  .hamburger:hover {
+    background: var(--secondary-color);
+  }
+  
+  .hamburger-menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100%;
+    background: var(--background-color);
+    border-right: 2px solid var(--primary-color);
+    z-index: 999;
+    transition: left 0.3s;
+    overflow-y: auto;
+  }
+  
+  .hamburger-menu.open {
+    left: 0;
+  }
+  
+  /* Submenus */
+  .menu-category {
+    padding: 15px;
+    border-bottom: 1px solid var(--secondary-color);
+    cursor: pointer;
+    color: var(--primary-color);
+  }
+  
+  .submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: #001100;
+  }
+  
+  .submenu.open {
+    max-height: 500px;
+  }
+  
+  .submenu li {
+    padding: 10px;
+  }
+  
+  .submenu a {
+    color: var(--primary-color);
+    text-decoration: none;
+    display: block;
+    padding: 8px 20px;
+  }
+  
+  .submenu a:hover {
+    background: var(--secondary-color);
+  }
+  
+  /* Seções de Conteúdo */
+  section {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--primary-color);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  h2 {
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--secondary-color);
+    padding-bottom: 10px;
+  }
+  
+  /* Botão Copiar */
+  .copiarBtn {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.3s;
+  }
+  
+  .copiarBtn:hover {
+    background: var(--primary-color);
+    color: var(--background-color);
+  }
+  
+  /* Botão Voltar ao Topo */
+  #backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background: var(--background-color);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s;
+    display: none;
+  }
+  
+  #backToTop:hover {
+    background: var(--secondary-color);
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .hamburger-menu {
+      width: 100%;
+      left: -100%;
+    }
+    
+    section {
+      margin: 10px;
+      padding: 15px;
+    }
+  }
+  
+  /* Scroll Suave */
+  html {
+    scroll-behavior: smooth;
+  }
+  /* Menu Hamburger Compacto */
+.hamburger {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.95);
+    color: #00FF00;
+    border: 2px solid #00FF00;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .hamburger-menu {
+    position: absolute;
+    top: 50px;
+    left: 15px;
+    width: 280px;
+    max-height: 70vh;
+    background: rgba(0, 20, 0, 0.98);
+    z-index: 999;
+    border: 2px solid #00FF00;
+    border-radius: 5px;
+    overflow-y: auto;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+  }
+  
+  .hamburger-menu.open {
+    transform: scaleY(1);
+  }
+  
+  /* Itens do Menu */
+  .menu-category {
+    color: #00FF00;
+    padding: 12px;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .menu-category::after {
+    content: "▼";
+    font-size: 10px;
+    margin-left: 10px;
+    transition: transform 0.3s;
+  }
+  
+  .menu-category.open::after {
+    transform: rotate(180deg);
+  }
+  
+  .submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: rgba(0, 40, 0, 0.9);
+  }
+  
+  .submenu.open {
+    max-height: 400px;
+  }
+  
+  .submenu li {
+    padding: 8px;
+  }
+  
+  .submenu a {
+    color: #00FF00;
+    text-decoration: none;
+    display: block;
+    padding: 8px 20px;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+  
+  .submenu a:hover {
+    background: rgba(0, 255, 0, 0.1);
+    padding-left: 25px;
+  }
+  
+  /* Mobile */
+  @media (max-width: 480px) {
+    .hamburger-menu {
+      width: 90%;
+      left: 5%;
+      top: 45px;
+    }
+    
+    .menu-category {
+      padding: 10px;
+    }
+    
+    .submenu a {
+      padding: 8px 15px;
+    }
+  }
