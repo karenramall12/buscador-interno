@@ -49,6 +49,94 @@
 
 <body>
   <canvas id="matrixCanvas"></canvas>
+  <!-- Adicione isso antes do conteúdo principal -->
+<div id="loginContainer" style="display: none;">
+  <div class="login-box">
+    <h2>Acesso Restrito</h2>
+    <input type="password" id="senhaInput" placeholder="Digite a senha">
+    <button onclick="verificarSenha()">Acessar</button>
+    <p id="mensagemErro" style="color: #ff0000; display: none;">Senha incorreta!</p>
+  </div>
+</div>
+
+<script>
+// Proteção de Senha
+const SENHA_CORRETA = "lua123"; // Altere para a senha desejada
+
+function verificarSenha() {
+  const senha = document.getElementById('senhaInput').value;
+  const mensagemErro = document.getElementById('mensagemErro');
+  
+  if(senha === SENHA_CORRETA) {
+    document.getElementById('loginContainer').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    document.getElementById('matrixCanvas').style.display = 'block';
+    sessionStorage.setItem('autenticado', 'true');
+  } else {
+    mensagemErro.style.display = 'block';
+    setTimeout(() => { mensagemErro.style.display = 'none'; }, 2000);
+  }
+}
+
+// Verificar autenticação ao carregar
+window.onload = function() {
+  if(!sessionStorage.getItem('autenticado')) {
+    document.getElementById('loginContainer').style.display = 'flex';
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('matrixCanvas').style.display = 'none';
+  }
+}
+</script>
+
+<style>
+/* Estilos para o login */
+#loginContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  z-index: 99999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background: rgba(0,30,0,0.9);
+  padding: 2rem;
+  border: 2px solid #00FF00;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,255,0,0.3);
+}
+
+.login-box input {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.8rem;
+  background: #000;
+  color: #00FF00;
+  border: 1px solid #00FF00;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.login-box button {
+  background: #00AA00;
+  color: #000;
+  border: 2px solid #00FF00;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.login-box button:hover {
+  background: #008800;
+}
+</style>
   
   <div id="app">
     <h1>Hostdog</h1>
