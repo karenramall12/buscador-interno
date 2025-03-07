@@ -47,17 +47,17 @@ function buscarNoManual() {
     
     function destacarTexto(node) {
         if (node.nodeType === 3) { // Nó de texto
-            const regex = new RegExp(`(${termoBusca})`, "gi");
+            const regex = new RegExp(`(${termoBusca})`, "gi"); // Case insensitive
             const fragment = doc.createDocumentFragment();
     
             node.nodeValue.split(regex).forEach(part => {
-                if (part.toLowerCase() === termoBusca.toLowerCase()) {
+                if (part.match(new RegExp(termoBusca, "gi"))) { // Verifica match independente de maiúsc/minúsc
                     const span = doc.createElement("span");
                     span.className = "highlight";
-                    span.style.backgroundColor = cores[corAtual % cores.length];
+                    span.style.backgroundColor = "#00ff00"; // Verde neon
+                    span.style.color = "#000000"; // Texto preto
                     span.textContent = part;
-                    resultados.push(span); // Salva o destaque na lista
-                    corAtual++;
+                    resultados.push(span);
                     fragment.appendChild(span);
                 } else {
                     fragment.appendChild(doc.createTextNode(part));
@@ -65,8 +65,8 @@ function buscarNoManual() {
             });
     
             node.replaceWith(fragment);
-        } else {
-            node.childNodes.forEach(destacarTexto);
+        } else if (node.nodeType === 1 && !["script", "style"].includes(node.tagName.toLowerCase())) {
+            Array.from(node.childNodes).forEach(destacarTexto);
         }
     }
     

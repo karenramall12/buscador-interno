@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HostDog</title>
+  <title>Academy.SP</title>
   <link rel="stylesheet" href="styles.css">
   <style>
    
@@ -59,8 +59,25 @@
   </div>
 </div>
 
-<script>
-// Proteção de Senha
+  <div id="app">
+    <h1>Academy.SP</h1>
+    <p>Buscador interno</p>
+    
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Digite sua dúvida...">
+      <button id="btnBuscar">Buscar</button>
+    </div>
+
+    <div class="iframe-container">
+      <iframe id="manualFrame" src="manual_organizado.html"></iframe>
+    </div>
+  </div>
+
+  <footer>Academy.SP 2004</footer>
+
+  <script src="chatgpt_busca.js"></script>
+  <script>
+    // Proteção de Senha
 const SENHA_CORRETA = "lua123"; // Altere para a senha desejada
 
 function verificarSenha() {
@@ -80,13 +97,28 @@ function verificarSenha() {
 
 // Verificar autenticação ao carregar
 window.onload = function() {
+  // Limpar sessionStorage para garantir que a senha seja solicitada novamente
+  sessionStorage.removeItem('autenticado');
+
   if(!sessionStorage.getItem('autenticado')) {
     document.getElementById('loginContainer').style.display = 'flex';
     document.getElementById('app').style.display = 'none';
     document.getElementById('matrixCanvas').style.display = 'none';
+  } else {
+    document.getElementById('loginContainer').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    document.getElementById('matrixCanvas').style.display = 'block';
   }
 }
-</script>
+
+// Adicionar evento de teclado para o campo de senha
+document.getElementById('senhaInput').addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    verificarSenha();
+  }
+});
+  </script>
 
 <style>
 /* Estilos para o login */
@@ -137,93 +169,6 @@ window.onload = function() {
   background: #008800;
 }
 </style>
-  
-  <div id="app">
-    <h1>Hostdog</h1>
-    <p>Buscador interno</p>
-    
-    <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Digite sua dúvida...">
-      <button id="btnBuscar">Buscar</button>
-    </div>
-
-    <div class="iframe-container">
-      <iframe id="manualFrame" src="manual_organizado.html"></iframe>
-    </div>
-  </div>
-
-  <footer>Hostdog 2025</footer>
-
-  <script src="chatgpt_busca.js"></script>
-  <script>
-    // Matrix Effect Script melhorado
-    const canvas = document.getElementById('matrixCanvas');
-    const ctx = canvas.getContext('2d');
-    
-    // Configurações ajustadas
-    const chars = "HostPad9@#$%^&*()";
-    const fontSize = 15;
-    let drops = [];
-    
-    function initMatrix() {
-        // Preenche toda a tela
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        
-        // Calcula colunas corretamente
-        const columns = Math.floor(canvas.width / fontSize);
-        drops = Array(columns).fill(0);
-    }
-
-    function drawMatrix() {
-        // Fundo com efeito de rastro
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        // Gradiente de cores
-        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-        gradient.addColorStop(0, '#0F0');
-        gradient.addColorStop(1, '#0A0');
-        ctx.fillStyle = gradient;
-        ctx.font = `${fontSize}px monospace`;
-
-        // Desenha caracteres
-        for (let i = 0; i < drops.length; i++) {
-            const char = chars[Math.floor(Math.random() * chars.length)];
-            const x = i * fontSize;
-            const y = drops[i] * fontSize;
-            
-            ctx.fillText(char, x, y);
-            
-            // Reinicia no topo aleatoriamente
-            if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
-            
-            // Velocidade variável
-            drops[i] += Math.random() * 0.5 + 0.3;
-        }
-    }
-
-    // Inicialização
-    initMatrix();
-    
-    // Controle de animação
-    let animationFrame;
-    function animate() {
-        drawMatrix();
-        animationFrame = requestAnimationFrame(animate);
-    }
-    animate();
-
-    // Redimensionamento responsivo
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            cancelAnimationFrame(animationFrame);
-            initMatrix();
-            animate();
-        }, 100);
-    });
-  </script>
+<script src="js/matrix.js"></script>
 </body>
 </html>
