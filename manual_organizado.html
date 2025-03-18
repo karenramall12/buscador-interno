@@ -4,54 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Menu Hamburger Fixo</title>
+  <title>Manual Organizado</title>
   
   <link rel="stylesheet" href="manual-styles.css">
   
- 
- 
-  
-  
 </head>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll("section").forEach(section => {
-        // Criar botão de copiar automaticamente
-        const botao = document.createElement("button");
-        botao.innerText = "📋";
-        botao.className = "copiarBtn";
-        botao.style.marginLeft = "2px"; // Espaçamento
-        botao.style.padding = "2px";
-        botao.style.cursor = "pointer";
-
-        // Adicionar botão ao título da seção (se existir)
-        const titulo = section.querySelector("h2, h3, p");
-        if (titulo) {
-            titulo.appendChild(botao);
-        } else {
-            section.insertBefore(botao, section.firstChild); // Insere no topo se não houver título
-        }
-
-        // Evento para copiar o texto ao clicar
-        botao.addEventListener("click", async function () {
-            const texto = section.innerText.replace("📋", "").trim(); // Remove o ícone antes de copiar
-
-            try {
-                await navigator.clipboard.writeText(texto);
-                botao.innerText = "✅  Copiado!";
-                setTimeout(() => { botao.innerText = "📋"; }, 2000);
-            } catch (err) {
-                console.error("Erro ao copiar:", err);
-                botao.innerText = "❌ Erro!";
-                setTimeout(() => { botao.innerText = "📋"; }, 2000);
-            }
-        });
-    });
-});
-
-  </script>
-  
 <body>
   
   
@@ -146,51 +103,6 @@ document.addEventListener("DOMContentLoaded", function () {
       </li>
     </ul>
   </nav>
-
-  <script>
-  // ----- Menu Hamburger e Submenus -----
-
-// Adiciona o listener para o botão do menu hamburger.
-// Ao clicar, interrompe a propagação do evento e alterna a classe "open"
-// para exibir ou esconder o menu.
-document.getElementById("hamburgerButton").addEventListener("click", function(e) {
-  e.stopPropagation(); // Impede que o clique se propague para o documento
-  document.getElementById("hamburgerMenu").classList.toggle("open");
-});
-
-// Adiciona o listener para cada categoria de menu (submenus).
-// Ao clicar em uma categoria, interrompe a propagação e alterna a classe "open"
-// no submenu correspondente (identificado pelo atributo data-target).
-document.querySelectorAll(".menu-category").forEach(function(category) {
-  category.addEventListener("click", function(e) {
-    e.stopPropagation(); // Evita que o clique feche o menu imediatamente
-    const targetId = this.getAttribute("data-target");
-    document.getElementById(targetId).classList.toggle("open");
-  });
-});
-
-// Listener global para fechar o menu e todos os submenus quando clicar fora.
-// Se o clique não ocorrer dentro do menu ou do botão hamburger, remove a classe "open"
-// do menu principal e de todos os submenus.
-document.addEventListener("click", function(e) {
-  const menu = document.getElementById("hamburgerMenu");
-  const button = document.getElementById("hamburgerButton");
-  if (!menu.contains(e.target) && !button.contains(e.target)) {
-    menu.classList.remove("open");
-    // Fecha todos os submenus
-    document.querySelectorAll(".submenu").forEach(function(submenu) {
-      submenu.classList.remove("open");
-    });
-  }
-});
-
-    
-    
-
-  </script>
-
-
-      
 
   <main>
     <section id="introducao">
@@ -1333,7 +1245,7 @@ document.addEventListener("click", function(e) {
       </section>
   
       <!-- Mensagem no Dia do Check Out -->
-      <section id="mensagem_no_dia_do_check_out">
+      <section id="mensagem_no_dia_do_check_out"></section>
         <h2>MENSAGEM NO DIA DO CHECK OUT</h2>
         <p>Bom dia,</p>
         <p>Sua hospedagem conclui-se às 11h, mas é possível deixar seus pertences na recepção sem cobrança adicional. Contudo, o quarto precisa ser liberado até o horário combinado, ok 🤓🤓🤓🤓</p>
@@ -1422,7 +1334,86 @@ document.addEventListener("click", function(e) {
         <p>(Descrição detalhada do histórico de contato do hóspede é registrada em nosso sistema.)</p>
       </section>
 
+       <script>
+        // Função para copiar texto
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll("section").forEach(section => {
+                // Criar botão de copiar automaticamente
+                const botao = document.createElement("button");
+                botao.innerText = "📋";
+                botao.className = "copiarBtn";
+                botao.style.marginLeft = "2px"; // Espaçamento
+                botao.style.padding = "2px";
+                botao.style.cursor = "pointer";
+
+                // Adicionar botão ao título da seção (se existir)
+                const titulo = section.querySelector("h2, h3, p");
+                if (titulo) {
+                    titulo.appendChild(botao);
+                } else {
+                    section.insertBefore(botao, section.firstChild); // Insere no topo se não houver título
+                }
+
+                // Evento para copiar o texto ao clicar
+                botao.addEventListener("click", async function () {
+                    const texto = section.innerText.replace("📋", "").trim(); // Remove o ícone antes de copiar
+
+                    try {
+                        await navigator.clipboard.writeText(texto);
+                        botao.innerText = "✅  Copiado!";
+                        setTimeout(() => { botao.innerText = "📋"; }, 2000);
+                    } catch (err) {
+                        console.error("Erro ao copiar:", err);
+                        botao.innerText = "❌ Erro!";
+                        setTimeout(() => { botao.innerText = "📋"; }, 2000);
+                    }
+                });
+            });
+        });
+
+        // Menu hamburger
+        document.getElementById("hamburgerButton").addEventListener("click", function(e) {
+            e.stopPropagation();
+            document.getElementById("hamburgerMenu").classList.toggle("open");
+        });
+
+        // ----- Menu Hamburger e Submenus -----
+
+        // Adiciona o listener para o botão do menu hamburger.
+        // Ao clicar, interrompe a propagação do evento e alterna a classe "open"
+        // para exibir ou esconder o menu.
+        document.getElementById("hamburgerButton").addEventListener("click", function(e) {
+          e.stopPropagation(); // Impede que o clique se propague para o documento
+          document.getElementById("hamburgerMenu").classList.toggle("open");
+        });
+
+        // Adiciona o listener para cada categoria de menu (submenus).
+        // Ao clicar em uma categoria, interrompe a propagação e alterna a classe "open"
+        // no submenu correspondente (identificado pelo atributo data-target).
+        document.querySelectorAll(".menu-category").forEach(function(category) {
+          category.addEventListener("click", function(e) {
+            e.stopPropagation(); // Evita que o clique feche o menu imediatamente
+            const targetId = this.getAttribute("data-target");
+            document.getElementById(targetId).classList.toggle("open");
+          });
+        });
+
+        // Listener global para fechar o menu e todos os submenus quando clicar fora.
+        // Se o clique não ocorrer dentro do menu ou do botão hamburger, remove a classe "open"
+        // do menu principal e de todos os submenus.
+        document.addEventListener("click", function(e) {
+          const menu = document.getElementById("hamburgerMenu");
+          const button = document.getElementById("hamburgerButton");
+          if (!menu.contains(e.target) && !button.contains(e.target)) {
+            menu.classList.remove("open");
+            // Fecha todos os submenus
+            document.querySelectorAll(".submenu").forEach(function(submenu) {
+              submenu.classList.remove("open");
+            });
+          }
+        });
+      </script>
+
        <script src="chatgpt_busca.js"></script>
     </body>
     </html>
-    

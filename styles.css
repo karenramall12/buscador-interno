@@ -1,24 +1,41 @@
-/* Estilos Gerais */
-
+/* Estilos globais */
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Courier New', monospace;
-  color: #00FF00;
-  background-color: #000;
-  overflow-x: hidden;
-  min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #000;
+    font-family: 'Courier New', monospace;
 }
 
-/* Efeito Matrix */
+/* Header */
+#app header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+    border-bottom: 2px solid #00FF00;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 0;
+    color: #00FF00;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+#app p {
+    margin: 10px 0 0 0;
+    font-size: 1.2em;
+    color: #00AA00;
+}
+
+/* Matrix Canvas */
 #matrixCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -2;
-  pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
 }
 
 /* Container Principal */
@@ -33,11 +50,38 @@ body {
   box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
 }
 
+/* Estilos para o cabeçalho */
+#app header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px 0;
+  border-bottom: 2px solid #00FF00;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  background: #000;
+  color: #00FF00;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+#app p {
+  margin: 10px 0 0 0;
+  font-size: 1.2em;
+  color: #00AA00;
+}
+
 /* Campo de Busca */
 .search-container {
   display: flex;
   gap: 10px;
   margin-bottom: 30px;
+  text-align: center;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 600px;
 }
 
 #searchInput {
@@ -50,6 +94,13 @@ body {
   font-family: monospace;
   font-size: 16px;
   transition: all 0.3s ease;
+  width: 70%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #00FF00;
+  background: rgba(0, 0, 0, 0.8);
+  color: #00FF00;
+  margin-right: 10px;
 }
 
 #searchInput:focus {
@@ -66,6 +117,13 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
+  width: 20%;
+  padding: 10px;
+  font-size: 16px;
+  background: #00AA00;
+  border: 2px solid #00FF00;
+  color: #000;
+  cursor: pointer;
 }
 
 #btnBuscar:hover {
@@ -82,12 +140,17 @@ body {
   background-color: rgba(0, 0, 0, 0.9);
   margin-bottom: 80px;
   box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+  margin: 20px auto;
+  width: 90%;
+  height: 70vh;
+  border: 2px solid #00FF00;
 }
 
 #manualFrame {
   width: 100%;
   height: 100%;
   border: none;
+  background: rgba(0, 0, 0, 0.9);
 }
 
 /* Rodapé */
@@ -103,6 +166,20 @@ footer {
   border-top: 2px solid #00FF00;
   z-index: 2;
   backdrop-filter: blur(3px);
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    color: #00FF00;
+    font-size: 0.9em;
+    margin-top: 30px;
+    border-top: 1px solid #00FF00;
+}
+
+footer p {
+    margin: 0;
+    opacity: 0.8;
 }
 
 /* Responsividade */
@@ -197,10 +274,42 @@ footer {
 }
 
 .login-box {
-  background: rgba(0, 20, 0, 0.8);
-  padding: 30px;
+  background: rgba(0,30,0,0.9);
+  padding: 2rem;
+  border: 2px solid #00FF00;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,255,0,0.3);
+}
+
+.login-box input,
+.login-box button {
+  margin: 1rem auto;
+  padding: 0.8rem;
+  width: 200px;
+  border-radius: 5px;
+}
+
+.login-box input {
+  display: block;
+  background: #000;
+  color: #00FF00;
+  border: 1px solid #00FF00;
+}
+
+.login-box button {
+  background: #00AA00;
+  color: #000;
+  border: 2px solid #00FF00;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#mensagemErro {
+  color: #ff0000;
+  display: none;
+  margin-top: 10px;
 }
 
 /* Responsividade */
@@ -220,4 +329,60 @@ footer {
   .floating-title span {
     font-size: 2em;
   }
+}
+
+/* Login */
+#loginContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  z-index: 99999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  padding: 20px 0;
+  border-bottom: 2px solid #00FF00;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin: 0;
+  color: #00FF00;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+/* Estilos da busca */
+.highlight {
+  background-color: transparent;
+}
+
+mark {
+  background-color: #FFFF00;
+  color: #000;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+/* Estilos para highlights e mensagens */
+.highlight mark {
+    background-color: #FFFF00;
+    color: #000;
+    padding: 2px 5px;
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(255, 255, 0, 0.5);
+}
+
+#mensagemBusca {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
